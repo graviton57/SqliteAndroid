@@ -1,26 +1,27 @@
 apply plugin: 'com.android.application'
 android {
+
     compileSdkVersion 25
     buildToolsVersion '25.0.3'
+
     defaultConfig {
         applicationId "org.sqlite.app.customsqlite"
         minSdkVersion 15
+        //noinspection OldTargetApi
         targetSdkVersion 25
     }
+
     dependencies {
         compile project(':sqlite-android')
+        //compile 'com.github.graviton57:sqlite-android:1.0.1'// add
         compile "com.android.support:appcompat-v7:$supportLibVersion" // includes support-v4
         compile fileTree(dir: 'libs', include: ['*.jar'])
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-        }
-    }
-    android {
-        lintOptions {
-            abortOnError false
         }
     }
 
