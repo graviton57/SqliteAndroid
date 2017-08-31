@@ -63,7 +63,7 @@ recent versions of SQLite and so by default do not build.
 
 Add the line below to the dependencies section in the ```build.gradle``` :
 ```
-compile ('com.github.graviton57:sqlite-android:1.0.1')
+compile 'com.github.graviton57:sqlite-android:1.0.1'
 ```
 Now you just need to change ```import``` part of your code to ```import org.sqlite.database.sqlite.SQLiteDatabase;``` and anything else will remain exactly how you use normal android sqlite classes.
 
