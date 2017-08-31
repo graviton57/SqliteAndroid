@@ -1,0 +1,87 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.3'
+
+    defaultConfig {
+        minSdkVersion 15
+        //noinspection OldTargetApi
+        targetSdkVersion 25
+        versionCode 101
+    }
+
+   /* sourceSets.main {
+        jniLibs.srcDir 'src/main/libs'
+        jni.srcDirs = [] //disable automatic ndk-build call
+    }
+
+    // call regular ndk-build(.cmd) script from app directory
+    task ndkBuild(type: Exec) {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        def ndkDir = properties.getProperty('ndk.dir')
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            commandLine 'ndk-build.cmd', '-C', file('src/main').absolutePath
+        } else {
+            commandLine ndkDir + '/ndk-build', '-C', file('src/main').absolutePath
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        compileTask -> compileTask.dependsOn ndkBuild
+    }*/
+    //sourceSets.main.jni.srcDirs = [] //disable automatic ndk-build call
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile "com.android.support:appcompat-v7:$supportLibVersion"
+}
+
+clean {
+    delete 'src/main/obj'
+    delete 'src/main/libs'
+}
+
+android {
+    lintOptions {
+        abortOnError false
+    }
+}
+
+//Add these lines to publish library to bintray
+publish {
+    groupId = 'com.github.graviton57'
+    artifactId = 'sqlite-android'
+    publishVersion = '1.0.1'
+    desc = 'Custom SQLite for Android with extensions functions.'
+    licences = ['Apache-2.0']
+    website = 'https://github.com/graviton57/SqliteAndroid'
+}
