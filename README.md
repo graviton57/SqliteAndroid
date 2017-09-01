@@ -26,7 +26,7 @@ The gradle file is configured to ignore the C and C++ files. This is due to an i
 
 ### Java Interface
 
-Most of the code is taken directly from this [repository](http://www.sqlite.org/android/tree?ci=api-level-15 "Title").
+Most of the code is taken directly from this [repository](http://www.sqlite.org/android/zip/SQLite+Android+Bindings.zip?uuid=trunk "Title").
 One of the main differences with this repository is that the code is broken up into two separate modules.
 
 1. An app that can be used for testing the custom SQLite database.
@@ -34,7 +34,7 @@ One of the main differences with this repository is that the code is broken up i
 
 ### SQLite
 
-The initial code for SQLite was pulled from this [repository](http://www.sqlite.org/android/tree?ci=api-level-15 "Title") but the version of SQLite has since been update to 3.20.1.
+The initial code for SQLite was pulled from this [repository](http://www.sqlite.org/android/zip/SQLite+Android+Bindings.zip?uuid=trunk "Title") but the version of SQLite has since been update to 3.20.1.
 As SQLite is update this can be updated in this repository easily by downloading the amalgamation source from [here](http://www.sqlite.org/download.html "Title"). 
 Extract the source from the zip file and copy the updated files into the jni folder. That is all that needs to be done to update the version of SQLite.
 
