@@ -450,36 +450,11 @@ public class SqliteActivity extends AppCompatActivity
             see_test_2();
             stmt_jrnl_test_1();
             json_test_1();
-            extension_test_1();
             myTv.append("\n" + myNErr + " errors from " + myNTest + " tests\n");
         } catch(Exception e) {
             myTv.append("Exception: " + e.toString() + "\n");
             myTv.append(android.util.Log.getStackTraceString(e) + "\n");
         }
-    }
-    public void extension_test_1() throws Exception {
-        final long t0 = System.nanoTime();
-        SQLiteDatabase.deleteDatabase(dbPath);
-
-        MyHelper helper = new MyHelper(this);
-        SQLiteDatabase db = helper.getWritableDatabase();
-        db.loadExtension("libsqlitefunctions");
-
-        db.execSQL("CREATE TABLE tm(x integer)");
-        db.execSQL("INSERT INTO tm VALUES (31)");
-        db.execSQL("INSERT INTO tm VALUES (71)");
-        db.execSQL("INSERT INTO tm VALUES (61)");
-        db.execSQL("INSERT INTO tm VALUES (5)");
-        db.execSQL("INSERT INTO tm VALUES (14)");
-        db.execSQL("INSERT INTO tm VALUES (15)");
-
-        db.execSQL("SELECT median(x) FROM tm");
-
-        String res = string_from_t1_x(db);
-        test_result("extension.1", res, ".x.y.z", t0);
-        db.close();
-        helper.close();
-
     }
 
     public void json_test_1() throws Exception {
