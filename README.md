@@ -3,8 +3,16 @@
 
 ## What?
 
-The purpose of this project is to use the Android NDK to create a custom version of SQLite to be embedded within an application and run on any Android device with Android API 19 or later.
+The purpose of this project is to use the Android NDK to create a custom version of SQLite to be embedded within an application. 
+It contains the latest SQLite version and the Android specific database APIs derived from AOSP packaged as an AAR library distributed on jcenter.
 This library can be further customized by adding additional SQLite extensions functions.
+Using this library you can keep up to date with the latest versions of SQLite and provide a consistent version across OS versions and devices.
+
+Use new SQLite features:
+
+- **[JSON1 extension](https://www.sqlite.org/json1.html)**
+- **[Common Table expressions](https://www.sqlite.org/lang_with.html)**
+- **[Indexes on expressions](https://www.sqlite.org/expridx.html)**
 
 References: https://www.sqlite.org/android/doc/trunk/www/index.wiki
 
@@ -34,7 +42,7 @@ One of the main differences with this repository is that the code is broken up i
 
 ### SQLite
 
-The initial code for SQLite was pulled from this [repository](http://www.sqlite.org/android/zip/SQLite+Android+Bindings.zip?uuid=trunk "Title") but the version of SQLite has since been update to 3.20.1.
+The initial code for SQLite was pulled from this [repository](http://www.sqlite.org/android/zip/SQLite+Android+Bindings.zip?uuid=trunk "Title") but the version of SQLite has since been update to 3.25.3.
 As SQLite is update this can be updated in this repository easily by downloading the amalgamation source from [here](http://www.sqlite.org/download.html "Title"). 
 Extract the source from the zip file and copy the updated files into the jni folder. That is all that needs to be done to update the version of SQLite.
 

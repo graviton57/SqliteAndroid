@@ -1,28 +1,16 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
-buildscript {
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-    }
-}
-
-apply plugin: 'com.android.library'
-
 android {
 
-    compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 16
         //noinspection OldTargetApi
-        targetSdkVersion 25
-        versionCode 101
+        targetSdkVersion 28
+        versionCode 3253
     }
 
     externalNativeBuild {
@@ -37,11 +25,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile "com.android.support:appcompat-v7:$supportLibVersion"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:support-core-utils:$supportLibVersion"
 }
 
 clean {
@@ -49,17 +41,13 @@ clean {
     delete 'src/main/libs'
 }
 
-android {
-    lintOptions {
-        abortOnError false
-    }
-}
-
 //Add these lines to publish library to bintray
 publish {
+
+    userOrg ="GipSoft"
     groupId = 'com.github.graviton57'
     artifactId = 'sqlite-android'
-    publishVersion = '1.0.1'
+    publishVersion = '3.25.3'
     desc = 'Custom SQLite for Android with extensions functions.'
     licences = ['Apache-2.0']
     website = 'https://github.com/graviton57/SqliteAndroid'
